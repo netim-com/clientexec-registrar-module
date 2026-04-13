@@ -308,7 +308,13 @@
             $contact->setBirthCity(isset($vars["birthCity"]) ? $vars["birthCity"] : "");
             $contact->setBirthCountry(isset($vars["birthCountry"]) ? $vars["birthCountry"] : "");
             $contact->setIdNumber(isset($vars["idNumber"]) ? $vars["idNumber"] : "");
-
+			// Fix bodyForm based on fr_legaltype for .fr domains
+			if (isset($vars["fr_legaltype"])) {
+ 			$contact->setBodyForm($vars["fr_legaltype"] === 'Individual' ? 'IND' : 'ORG');
+		}
+			if ($vars["fr_legaltype"] === 'Individual') {
+   			 $contact->setBodyName('');
+		}
             //If the companyName exists, we replace the bodyName
             if(isset($vars["companyName"]) && !empty($vars["companyName"]))
                 $contact->setBodyName($vars["companyName"]);
