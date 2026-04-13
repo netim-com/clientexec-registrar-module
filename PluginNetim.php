@@ -392,18 +392,20 @@
  
             // Registrant Details
             $contact = new NormalizedContact(
-                $params["RegistrantFirstName"], 
-                $params["RegistrantLastName"], 
-                $params["RegistrantOrganizationName"], 
-                $params["RegistrantAddress1"], 
-                $params["RegistrantAddress2"], 
-                $params["RegistrantPostalCode"], 
-                $params["RegistrantStateProvince"], 
-                $params["RegistrantCountry"], 
-                $params["RegistrantCity"], 
-                $params["RegistrantPhone"],
-                $params["RegistrantEmailAddress"],
-                'EN', 1);            
+                (string)($params["RegistrantFirstName"]        ?? ''),
+                (string)($params["RegistrantLastName"]         ?? ''),
+                (string)($params["RegistrantOrganizationName"] ?? ''),
+                (string)($params["RegistrantAddress1"]         ?? ''),
+                (string)($params["RegistrantAddress2"]         ?? ''),
+                (string)($params["RegistrantPostalCode"]       ?? ''),
+                (string)($params["RegistrantStateProvince"]    ?? ''),
+                (string)($params["RegistrantCountry"]          ?? ''),
+                (string)($params["RegistrantCity"]             ?? ''),
+                (string)($params["RegistrantPhone"]            ?? ''),
+                (string)($params["RegistrantEmailAddress"]     ?? ''),
+                'EN',
+                1
+            );         
         
             // Manage additional domain fields
             $this->parseAadditionalfields($params["ExtendedAttributes"],$tld,$contact);
